@@ -59,7 +59,49 @@ public class main {
 		  
 		  	return obj1;
 		
-	  }	
+	  }
+  
+  public static void ShowProducts(JSONArray jsonArray) {
+	  Scanner scanf = new Scanner(System.in);
+	  String checkName = scanf.nextLine();
+	  Iterator it2 = jsonArray.iterator();
+		while(it2.hasNext()) {
+  		
+  		JSONObject o = (JSONObject)it2.next();
+  		if(o.get("name").equals(checkName)) {
+  			String jsonId = o.get("id").toString();
+      		String jsonName = o.get("name").toString();
+      		String jsonSize = o.get("size").toString();
+      		String jsonColor = o.get("color").toString();
+      		String jsonType = o.get("type").toString();
+      		System.out.println("상품id : " + jsonId + "상품명 : " + jsonName + " 사이즈 : " + jsonSize + " 색 : " + jsonColor + " 종류 : " + jsonType);
+      		break;
+  		}	   
+	}
+		
+  }
+  
+  public static void DeleteProducts(JSONArray jsonArray) {
+	  int count = 0;
+	  
+	  Scanner scanf = new Scanner(System.in);
+	  String checkName = scanf.nextLine();
+	  Iterator it2 = jsonArray.iterator();
+	  
+		while(it2.hasNext()) {
+  		
+  		JSONObject o = (JSONObject)it2.next();
+  		if(o.get("name").equals(checkName)) {
+  			
+  			jsonArray.remove(count);
+  			break;
+  		}
+  		count++;
+	}
+		
+  }
+  
+  
   
   public static void main(String[] args)  {
 
@@ -82,8 +124,9 @@ public class main {
 		
 		System.out.print("> ");
 		int choice = scan.nextInt();
-		
-		
+
+		System.out.println("");
+
     	
         switch(choice){
                 case 1:
@@ -100,11 +143,14 @@ public class main {
 		        	break;
           
 				case 3: 
-					
-					break;
+					System.out.println("상품을 조회합니다.");
+					System.out.println("상품명을 입력해주세요");
+					ShowProducts(jsonArray);
 
 				case 4:
-					
+					System.out.println("상품을 제거합니다.");
+					System.out.println("제거할 상품명을 입력해주세요");
+					DeleteProducts(jsonArray);
 					break;
           
 				case 5:
