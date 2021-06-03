@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -140,10 +141,37 @@ public class main {
 		
   }
   
+  /*
+   * @ 메소드명 : SaveJson
+   * @ breif  : Json파일을 저장하는 기능
+   * @ detail : jsonObject에 저장된 내용을 선언한 위치에 Json파일로 내보냅니다.
+   * @ 작성자   : 신희빈
+   * @ 작성일자 : 2021 - 06 -03
+   */
+  public void SaveJson(JSONArray jsonArray) throws IOException {
+	  JSONObject jObj = new JSONObject();			// json오브젝트 저장하기위해 선언
+		jObj.put("Dress", jsonArray);				// 출력 할때 앞에 "Dress"가 붙도록
+		FileWriter writer = new FileWriter("src/json/mydata.json");	// json파일 저장할 위치
+		writer.write(jObj.toJSONString());	//String 형태로 저장
+		writer.flush();
+		writer.close();
+  }
   
+  /*
+   * @ 메소드명 : GetJson
+   * @ breif  : Json파일을 불러오는기능
+   * @ detail : 선언한 위치에  Json파일로 불러옵니다.
+   * @ 작성자   : 신희빈
+   * @ 작성일자 : 2021 - 06 -03
+   */
+ public void GetJson(JSONArray jsonArray) throws IOException, ParseException {
+	 JSONParser parser = new JSONParser();		// json파일 파싱하기위해 선언
+		Object obj = parser.parse(new FileReader("src/json/mydata.json"));	// 불러올 json 파일 위치선언
+		System.out.println(obj);	// json 파일 호출
+ }
   
-  public static void main(String[] args)  {
-
+  public static void main(String[] args) throws IOException, ParseException  {
+	main Main = new main();
 	JSONArray jsonArray = new JSONArray();
 	  
     boolean swi = true; 
@@ -194,22 +222,14 @@ public class main {
 					break;
           
 				case 5:
-					// @author 신희빈
-					// @date 2021-06-03
-					
-					JSONObject jObj = new JSONObject();			// json오브젝트 저장하기위해 선언
-					jObj.put("Dress", jsonArray);				// 출력 할때 앞에 "Dress"가 붙도록
-					FileWriter writer = new FileWriter("src/json/mydata.json");	// json파일 저장할 위치
-			  		writer.write(jObj.toJSONString());	//String 형태로 저장
-			  		writer.flush();
-			  		writer.close();
+					System.out.println("파일을 내보냅니다.");
+					Main.SaveJson(jsonArray);
 					
 					break;
 
 				case 6: 
-					JSONParser parser = new JSONParser();		// json파일 파싱하기위해 선언
-					Object obj = parser.parse(new FileReader("src/json/mydata.json"));	// 불러올 json 파일 위치선언
-					System.out.println(obj);	// json 파일 호출
+					System.out.println("파일을 불러옵니다.");
+					Main.GetJson(jsonArray);
 					
 					break;
 
