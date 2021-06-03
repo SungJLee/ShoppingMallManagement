@@ -10,20 +10,46 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class main {
+	
+  public void AddTop{
+	
+	Top tops = = new Top();
+	
+	JSONObject obj1 = new JSONObject();
+  	obj1.put("houseNumber",temp_houseNumber);
+  	obj1.put("houseName",temp_houseName);
+  	obj1.put("phoneNumber",temp_phoneNumber);
+  	obj1.put("houseType",temp_houseType);
+  	jsonArray.add(obj1);
+  	
+  }
+  
+  public void AddPants{
+	  
+	Pants pants = = new Pants();
+		
+	JSONObject obj1 = new JSONObject();
+	obj1.put("houseNumber",temp_houseNumber);
+	obj1.put("houseName",temp_houseName);
+	obj1.put("phoneNumber",temp_phoneNumber);
+	obj1.put("houseType",temp_houseType);
+	jsonArray.add(obj1);  
+	
+  }
 
-  public static void main(String[] args) throws IOException, ParseException {
+  public static void main(String[] args)  {
 
 
     boolean swi = true; 
 		while(swi){
-    System.out.println("-------------------------------------");
-	System.out.println("");
-	System.out.println("");
-	System.out.println("");
-	System.out.println("");
-	System.out.println("");
-	System.out.println("");
-    System.out.println("");
+	    System.out.println("-------------------------------------");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+	    System.out.println("");
 			
       
 		Scanner scan = new Scanner(System.in); 
@@ -32,13 +58,19 @@ public class main {
 		System.out.print("> ");
 		int choice = scan.nextInt();
 		
+		
+    	
         switch(choice){
                 case 1:
-                	
+                	System.out.println("상의를 추가합니다.");
+                	System.out.println("Id , 이름 , 사이즈, 색깔, 긴팔 / 반팔");
+                	AddDress();
                 	break;
           
 		        case 2:
-		        	
+		        	System.out.println("하의를 추가합니다.");
+                	System.out.println("Id , 이름 , 사이즈, 색깔, 긴바지 / 반바지");
+                	AddDress();
 		        	break;
           
 				case 3: 
@@ -61,7 +93,7 @@ public class main {
 					swi = false;
 					break;
 				default :
-					System.out.println("잘못입력하셨습니다.");
+					System.out.println("�옒紐살엯�젰�븯�뀲�뒿�땲�떎.");
 					break;
 			}
     }
