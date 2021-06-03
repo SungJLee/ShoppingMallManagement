@@ -17,13 +17,13 @@ public class main {
     boolean swi = true; 
 		while(swi){
     System.out.println("-------------------------------------");
-	System.out.println("1. ÀÔ·ÂÇÏ±â");
-	System.out.println("2. ÀüÃ¼ Á¶È¸ÇÏ±â");
-	System.out.println("3. È£¼ö·Î Á¶È¸ÇÏ±â");
-	System.out.println("4. jsonÀ¸·Î Á¤º¸º¸±â");
-	System.out.println("5. jsonÀ¸·Î ³»º¸³»±â");
-	System.out.println("6. jsonÆÄÀÏ ºÒ·¯¿À±â");
-    System.out.println("7. ³ª°¡±â");
+	System.out.println("");
+	System.out.println("");
+	System.out.println("");
+	System.out.println("");
+	System.out.println("");
+	System.out.println("");
+    System.out.println("");
 			
       
 		Scanner scan = new Scanner(System.in); 
@@ -57,11 +57,11 @@ public class main {
 					
 					break;
 
-				case 7 : // ³ª°¡±â
+				case 7 :
 					swi = false;
 					break;
 				default :
-					System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+					System.out.println("ìž˜ëª»ìž…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 					break;
 			}
     }
