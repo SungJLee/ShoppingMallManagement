@@ -61,19 +61,19 @@ public class main {
 		
 	  }	
   
-  public static void main(String[] args)  {
+  public static void main(String[] args) throws IOException, ParseException  {
 
 	JSONArray jsonArray = new JSONArray();
 	  
     boolean swi = true; 
 		while(swi){
 	    System.out.println("-------------------------------------");
+		System.out.println("1.상의학목 추가");
+		System.out.println("2.바지항목 추가");
 		System.out.println("");
 		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
+		System.out.println("5. json으로 내보내기");
+		System.out.println("6. json파일 불러오기");
 	    System.out.println("");
 			
       
@@ -108,18 +108,26 @@ public class main {
 					break;
           
 				case 5:
+					JSONObject jObj = new JSONObject();
+					jObj.put("Dress", jsonArray);
+					FileWriter writer = new FileWriter("src/json/mydata.json");
+			  		writer.write(jObj.toJSONString());
+			  		writer.flush();
+			  		writer.close();
 					
 					break;
 
 				case 6: 
-					
+					JSONParser parser = new JSONParser();
+					Object obj = parser.parse(new FileReader("src/json/mydata.json"));
+					System.out.println(obj);
 					break;
 
 				case 7 :
 					swi = false;
 					break;
 				default :
-					System.out.println("占쎌삋筌륁궡�뿯占쎌젾占쎈릭占쎈�뀐옙�뮸占쎈빍占쎈뼄.");
+					System.out.println("잘못 입력하셨습니다.");
 					break;
 			}
     }
