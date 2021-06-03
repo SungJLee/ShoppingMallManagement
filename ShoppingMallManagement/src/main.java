@@ -108,19 +108,23 @@ public class main {
 					break;
           
 				case 5:
-					JSONObject jObj = new JSONObject();
-					jObj.put("Dress", jsonArray);
-					FileWriter writer = new FileWriter("src/json/mydata.json");
-			  		writer.write(jObj.toJSONString());
+					
+					// @author 신희빈
+					// @date 2021-06-03
+					
+					JSONObject jObj = new JSONObject();			// json오브젝트 저장하기위해 선언
+					jObj.put("Dress", jsonArray);				// 출력 할때 앞에 "Dress"가 붙도록
+					FileWriter writer = new FileWriter("src/json/mydata.json");	// json파일 저장할 위치
+			  		writer.write(jObj.toJSONString());	//String 형태로 저장
 			  		writer.flush();
 			  		writer.close();
 					
 					break;
 
 				case 6: 
-					JSONParser parser = new JSONParser();
-					Object obj = parser.parse(new FileReader("src/json/mydata.json"));
-					System.out.println(obj);
+					JSONParser parser = new JSONParser();		// json파일 파싱하기위해 선언
+					Object obj = parser.parse(new FileReader("src/json/mydata.json"));	// 불러올 json 파일 위치선언
+					System.out.println(obj);	// json 파일 호출
 					break;
 
 				case 7 :
