@@ -9,37 +9,62 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class main {
-	
-  public void AddTop{
-	
-	Top tops = = new Top();
-	
-	JSONObject obj1 = new JSONObject();
-  	obj1.put("houseNumber",temp_houseNumber);
-  	obj1.put("houseName",temp_houseName);
-  	obj1.put("phoneNumber",temp_phoneNumber);
-  	obj1.put("houseType",temp_houseType);
-  	jsonArray.add(obj1);
-  	
-  }
-  
-  public void AddPants{
-	  
-	Pants pants = = new Pants();
-		
-	JSONObject obj1 = new JSONObject();
-	obj1.put("houseNumber",temp_houseNumber);
-	obj1.put("houseName",temp_houseName);
-	obj1.put("phoneNumber",temp_phoneNumber);
-	obj1.put("houseType",temp_houseType);
-	jsonArray.add(obj1);  
-	
-  }
 
+
+public class main {
+
+  
+  
+  public static JSONObject AddTop(){
+
+		Scanner scanf = new Scanner(System.in);
+		String tempId = scanf.nextLine();
+		String tempName = scanf.nextLine();
+		String tempSize = scanf.nextLine();
+		String tempColor = scanf.nextLine();
+		String tempType = scanf.nextLine();
+		
+		Top tops = new Top(tempId,tempName, tempSize,tempColor,tempType);
+		
+
+		JSONObject obj1 = new JSONObject();
+	  	obj1.put("id",tempId);
+	  	obj1.put("name",tempName);
+	  	obj1.put("size",tempSize);
+	  	obj1.put("color",tempColor);
+	  	obj1.put("type",tempType);
+	  	
+	  	return obj1;
+	  	
+	  }
+	  
+  public static JSONObject AddPants(){
+		  
+		  	Scanner scanf = new Scanner(System.in);
+			String tempId = scanf.nextLine();
+			String tempName = scanf.nextLine();
+			String tempSize = scanf.nextLine();
+			String tempColor = scanf.nextLine();
+			String tempType = scanf.nextLine();
+			
+			Pants pants= new Pants(tempId,tempName, tempSize,tempColor,tempType);
+			
+
+			JSONObject obj1 = new JSONObject();
+		  	obj1.put("id",tempId);
+		  	obj1.put("name",tempName);
+		  	obj1.put("size",tempSize);
+		  	obj1.put("color",tempColor);
+		  	obj1.put("type",tempType);
+		  
+		  	return obj1;
+		
+	  }	
+  
   public static void main(String[] args)  {
 
-
+	JSONArray jsonArray = new JSONArray();
+	  
     boolean swi = true; 
 		while(swi){
 	    System.out.println("-------------------------------------");
@@ -62,15 +87,16 @@ public class main {
     	
         switch(choice){
                 case 1:
-                	System.out.println("상의를 추가합니다.");
-                	System.out.println("Id , 이름 , 사이즈, 색깔, 긴팔 / 반팔");
-                	AddDress();
+                	System.out.println("상의항목을 추가합니다.");
+                	System.out.println("Id , 이름 ,  사이즈 , 색깔, 반팔 / 긴팔");
+                	jsonArray.add(AddTop());
                 	break;
           
 		        case 2:
-		        	System.out.println("하의를 추가합니다.");
-                	System.out.println("Id , 이름 , 사이즈, 색깔, 긴바지 / 반바지");
-                	AddDress();
+		        	System.out.println("바지항목을 추가합니다.");
+		        	System.out.println("Id는 10이상으로 주세요");
+                	System.out.println("Id , 이름 ,  사이즈 , 색깔, 반바지 / 긴바지");
+                	jsonArray.add(AddPants());
 		        	break;
           
 				case 3: 
@@ -93,7 +119,7 @@ public class main {
 					swi = false;
 					break;
 				default :
-					System.out.println("�옒紐살엯�젰�븯�뀲�뒿�땲�떎.");
+					System.out.println("占쎌삋筌륁궡�뿯占쎌젾占쎈릭占쎈�뀐옙�뮸占쎈빍占쎈뼄.");
 					break;
 			}
     }
