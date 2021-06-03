@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,10 +21,10 @@ public class main {
    * @ 작성자   : 이성재
    * @ 작성일자 :2021 - 06 -03
    * @ return : (JSONObject (상품id , name , size , color , type))
-   * @ why    : jsonArray를 전역처리할 수 없어서(내능력상) static을 사용하는건 지양해야 하기 때문에 JsonObject로 내보냈습니다. 
+   * @ why    : Top클래스 생성자를 이용해서 JSONObject 객체에 저장해 리턴해서 그걸 JSONArray에 넣기 위해 이렇게 만들었습니다. 
    */
 	
-  public static JSONObject AddTop(){
+  public JSONObject AddTop(){
 
 		Scanner scanf = new Scanner(System.in);
 		String tempId = scanf.nextLine();
@@ -55,10 +54,10 @@ public class main {
    * @ 작성자   : 이성재
    * @ 작성일자 : 2021 - 06 -03
    * @ return : (JSONObject (상품id , name , size , color , type))
-   * @ why    : jsonArray를 전역처리할 수 없어서(내능력상) static을 사용하는건 지양해야 하기 때문에 JsonObject로 내보냈습니다.
+   * @ why    : Pants클래스 생성자를 이용해서 JSONObject 객체에 저장해 리턴해서 그걸 JSONArray에 넣기 위해 이렇게 만들었습니다.
    */
   
-  public static JSONObject AddPants(){
+  public JSONObject AddPants(){
 		  
 		  	Scanner scanf = new Scanner(System.in);
 			String tempId = scanf.nextLine();
@@ -91,7 +90,7 @@ public class main {
    * @ why    : 상품명이 어디 인덱스에 있는지 잘 모르기 때문에 전체를 돌아서 해당 값을 찾아서 그 jsonObject에 해당 값들을 출력하기 위해 이렇게 만들었습니다.
    */
   
-  public static void ShowProducts(JSONArray jsonArray) {
+  public void ShowProducts(JSONArray jsonArray) {
 	  Scanner scanf = new Scanner(System.in);
 	  String checkName = scanf.nextLine();
 	  Iterator it2 = jsonArray.iterator();
@@ -121,7 +120,7 @@ public class main {
    * @ why    : 상품명이 어디 인덱스에 있는지 잘 모르기 때문에 전체를 돌아서 해당 값을 찾아서 그 jsonObject에 해당하는 걸 삭제하기 위해서 이렇게 만들었습니다.
    */
   
-  public static void DeleteProducts(JSONArray jsonArray) {
+  public void DeleteProducts(JSONArray jsonArray) {
 	  int count = 0;
 	  
 	  Scanner scanf = new Scanner(System.in);
@@ -148,6 +147,7 @@ public class main {
    * @ 작성자   : 신희빈
    * @ 작성일자 : 2021 - 06 -03
    */
+  
   public void SaveJson(JSONArray jsonArray) throws IOException {
 	  JSONObject jObj = new JSONObject();			// json오브젝트 저장하기위해 선언
 		jObj.put("Dress", jsonArray);				// 출력 할때 앞에 "Dress"가 붙도록
@@ -164,13 +164,15 @@ public class main {
    * @ 작성자   : 신희빈
    * @ 작성일자 : 2021 - 06 -03
    */
+  
  public void GetJson(JSONArray jsonArray) throws IOException, ParseException {
 	 JSONParser parser = new JSONParser();		// json파일 파싱하기위해 선언
 		Object obj = parser.parse(new FileReader("src/json/mydata.json"));	// 불러올 json 파일 위치선언
 		System.out.println(obj);	// json 파일 호출
  }
   
-  public static void main(String[] args) throws IOException, ParseException  {
+  public static void main(String[] args) throws IOException, ParseException {
+
 	main Main = new main();
 	JSONArray jsonArray = new JSONArray();
 	  
@@ -198,30 +200,32 @@ public class main {
         switch(choice){
                 case 1:
                 	System.out.println("상의항목을 추가합니다.");
-                	System.out.println("Id , 이름 ,  사이즈 , 색깔, 반팔 / 긴팔");
-                	jsonArray.add(AddTop());
+                	System.out.println("Id , 이름 ,  사이즈 , 색깔, 반팔 / 긴팔");           
+                	jsonArray.add(Main.AddTop());
                 	break;
           
 		        case 2:
 		        	System.out.println("바지항목을 추가합니다.");
 		        	System.out.println("Id는 10이상으로 주세요");
                 	System.out.println("Id , 이름 ,  사이즈 , 색깔, 반바지 / 긴바지");
-                	jsonArray.add(AddPants());
+                	jsonArray.add(Main.AddPants());
 		        	break;
           
 				case 3: 
 					System.out.println("상품을 조회합니다.");
 					System.out.println("상품명을 입력해주세요");
-					ShowProducts(jsonArray);
+					Main.ShowProducts(jsonArray);
+					Main.ShowProducts(jsonArray);
 					break;
 
 				case 4:
 					System.out.println("상품을 제거합니다.");
 					System.out.println("제거할 상품명을 입력해주세요");
-					DeleteProducts(jsonArray);
+					Main.DeleteProducts(jsonArray);
 					break;
           
 				case 5:
+					
 					System.out.println("파일을 내보냅니다.");
 					Main.SaveJson(jsonArray);
 					
@@ -234,8 +238,10 @@ public class main {
 					break;
 
 				case 7 :
+					
 					swi = false;
 					break;
+					
 				default :
 					System.out.println("잘못 입력하셨습니다.");
 					break;
